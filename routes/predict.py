@@ -1,10 +1,11 @@
 import numpy as np
+import pandas as pd
 import joblib, os
 from typing import Any, Tuple
 import pickle
 import sklearn
 
-def predict(X : Any) -> Tuple[float, float]:
+def predict(model, X : Any) -> Tuple[float, float]:
     """
     Predict the target variable using the trained model.
 
@@ -14,16 +15,11 @@ def predict(X : Any) -> Tuple[float, float]:
     Returns:
         Tuple[float, float]: Predicted log value and predicted value.
     """
-    # Load the model
-    with open('model_params\model.pkl', 'rb') as f:
-        model = pickle.load(f)
-
+    try:
+        X_df = pd.DataFrame([X])
+    except ValueError as e:
+        print(f"Error converting input to DataFrame: {e}")
+        return None, None
     
-    x = np.array(X)
-
-    print(x)
-    
-    # Make predictions
-    y_pred = model.predict(X)
-    
-    return np.exp(y_pred)
+    y_pred = model.predict(X_df)
+    return np.exp(y_pred[0])
