@@ -10,7 +10,7 @@ except FileNotFoundError:
 
 BASE_URL = '/api/v1'
 
-app = Flask("Green Thumb")
+app = Flask("ML Model API")
 CORS(app)
 
 #-------------------------------- ROUTES --------------------------------
@@ -31,5 +31,4 @@ def prediction():
     return {'predicted_value' : float(pred)}, 200
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
-
+    app.run(host="0.0.0.0", port=8080)
