@@ -21,4 +21,4 @@ def predict(X : Any) -> Tuple[float, float]:
     # Make predictions
     y_pred = model.predict(X)
     
-    return y_pred, np.exp(y_pred)
+    return np.exp(y_pred)
