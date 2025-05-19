@@ -54,4 +54,4 @@ jobs:
             -p 8080:8081 \
             --name ${{ secrets.PROJECT_NAME }} \
             --network=rede \
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}-ci:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}:${{ github.sha }}
